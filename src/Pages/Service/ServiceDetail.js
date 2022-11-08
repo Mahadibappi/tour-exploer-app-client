@@ -1,11 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-const Details = () => {
-   
-   const {title,img,price,hotel,description}= useLoaderData()
+const ServiceDetails = () => {
+const {title,img,price,hotel,description}= useLoaderData()
   
-    return (
+ return (
 <div className='grid md:grid-cols-2'>
  <div className="card w-10/12 bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
@@ -25,4 +24,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default ServiceDetails;
