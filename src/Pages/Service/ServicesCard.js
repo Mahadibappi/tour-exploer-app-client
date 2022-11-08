@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ServicesCard = ({ service }) => {
-    const {title,img,price,description} = service
+    const {_id,title,img,price,description} = service
     return (
 
     <div className="card w-96 bg-base-100 shadow-xl">
@@ -14,7 +14,7 @@ const ServicesCard = ({ service }) => {
         <h2 className="card-title">Price: ${ price}</h2>
         <p>{ description.slice(0,100)+'...'}</p>
         <div className="card-actions">
-        <Link to={"/details"}>
+        <Link to={`/services/${_id}`}>
         <button className="btn btn-primary">See Details</button>
          </Link>
     </div>

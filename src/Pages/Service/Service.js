@@ -4,8 +4,6 @@ import ServiceCard from './ServiceCard';
 
 const Service = () => {
     const [card, serCard] = useState()
-    // const array = [...card.slice(0, 3)]
-    // console.log(array);
     useEffect(() => {
         fetch("data.json")
          .then(res => res.json())
