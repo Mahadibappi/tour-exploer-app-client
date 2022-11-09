@@ -1,11 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Details = () => {
-   
-   const {title,img,price,hotel,description}= useLoaderData()
+  const { _id,title, img, price, hotel, description } = useLoaderData()
+  const { user } = useContext(AuthContext);
+  const handleReview = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value;
+        const phone = form.phone.value;
+        const email = user?.email || "unregistered";
+        const message = form.message.value;
+
+        const review = {
+            service: _id,
+            serviceName: title,
+            price: price,
+            customerName: name,
+            email: email,
+            phone: phone,
+            message: message
+        }
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+        .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    alert('Review placed successfully')
+                    form.reset()
+                }
+            })
+        .catch(err=> console.log(err))
+
+    }
   
-    return (
+  return (
+   // service details section
 <div >
  <div className="card w-full bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
@@ -17,15 +54,18 @@ const Details = () => {
         <h2 className="card-title">Hotel: { hotel}</h2>
         <p className='w-1/2'>{ description}</p>
     </div>   
-    </div>
+</div>
+      
+      {/* Revies section */}
+      
         <div >
              <h3 className='text-4xl text-center mt-8'>Review Services</h3>
-         <form className='flex justify-center'>
+         <form onSubmit={handleReview} className='flex justify-center'>
             
             <div className='grid grid-cols-1 gap-4 mt-3 mx-auto'>
-                <input type="text" name='firstName' placeholder="Your Name" className="input input-bordered input-primary w-full" />
+                <input type="text" name='name' placeholder="Your Name" className="input input-bordered input-primary w-full" />
                 <input type="text" name='phone' placeholder="Your Phone" className="input input-bordered input-primary w-full" required />
-                <input type="text" name='email' placeholder="Your email" className="input input-bordered input-primary w-full" readOnly />
+                <input type="text" name='email' placeholder="Your email" className="input input-bordered input-primary w-full"  />
                 <div>
                     <textarea name='message' className="textarea textarea-primary w-full" placeholder="Your Message"></textarea>
                     <input type="submit" value="Add review" className='mt-3 btn  btn-outline btn-success' />
