@@ -51,19 +51,19 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/login"
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                About us
+                Login
               </Link>
             </li>
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/"
+                to="/signup"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
