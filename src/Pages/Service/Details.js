@@ -18,7 +18,21 @@ const Details = () => {
         <p className='w-1/2'>{ description}</p>
     </div>   
     </div>
-    <section>Review</section>
+        <div >
+             <h3 className='text-4xl text-center mt-8'>Review Services</h3>
+         <form className='flex justify-center'>
+            
+            <div className='grid grid-cols-1 gap-4 mt-3 mx-auto'>
+                <input type="text" name='firstName' placeholder="Your Name" className="input input-bordered input-primary w-full" />
+                <input type="text" name='phone' placeholder="Your Phone" className="input input-bordered input-primary w-full" required />
+                <input type="text" name='email' placeholder="Your email" className="input input-bordered input-primary w-full" readOnly />
+                <div>
+                    <textarea name='message' className="textarea textarea-primary w-full" placeholder="Your Message"></textarea>
+                    <input type="submit" value="Add review" className='mt-3 btn  btn-outline btn-success' />
+                </div>
+          </div>
+        </form>
+     </div>
    </div>
             
             
