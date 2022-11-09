@@ -15,7 +15,7 @@ const ServiceDetail = () => {
         <h2 className="card-title">{ title}</h2>
         <h2 className="card-title">Price: ${ price}</h2>
         <h2 className="card-title">Hotel: ${ hotel}</h2>
-        <p>{ description}</p>
+        <p className='w-1/2'>{ description}</p>
     </div>   
     </div>
   
