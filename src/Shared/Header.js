@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../src/logo.png'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../src/logo.png";
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    return (
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
     <div className="bg-gray-900 ">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
         <div className="relative flex items-center justify-between">
@@ -14,7 +14,7 @@ const Header = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            <img className='w-14' src={ logo} alt="" />
+            <img className="w-14" src={logo} alt="" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
               Travelers
             </span>
@@ -32,7 +32,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/service"
+                to="/services"
                 aria-label="Our product"
                 title="Our product"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
@@ -43,10 +43,9 @@ const Header = () => {
             <li>
               <Link
                 to="/blog"
-                
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-               Blog
+                Blog
               </Link>
             </li>
             <li>
@@ -150,7 +149,7 @@ const Header = () => {
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                         Home
+                          Home
                         </a>
                       </li>
                       <li>
@@ -183,7 +182,6 @@ const Header = () => {
                           About us
                         </a>
                       </li>
-                    
                     </ul>
                   </nav>
                 </div>
@@ -193,7 +191,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Header;
