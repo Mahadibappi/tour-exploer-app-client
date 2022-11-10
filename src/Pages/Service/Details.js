@@ -23,7 +23,7 @@ const Details = () => {
       phone: phone,
       message: message,
     };
-    fetch("http://localhost:5000/review", {
+    fetch("https://travelers-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -61,7 +61,7 @@ const Details = () => {
       {/* Add Review section */}
 
       <div>
-        <h3 className="text-4xl text-center mt-8">Review Services</h3>
+        <h3 className="text-4xl text-center  text-teal-500 mt-8">Add Review</h3>
         <form onSubmit={handleReview} className="flex justify-center">
           <div className="grid grid-cols-1 gap-4 mt-3 mx-auto">
             <input
