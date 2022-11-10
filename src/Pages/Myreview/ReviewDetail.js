@@ -1,6 +1,7 @@
 import React from "react";
 
-const ReviewDetail = () => {
+const ReviewDetail = ({ my }) => {
+  const { customerName, message } = my;
   return (
     <tr>
       <th>
@@ -19,11 +20,11 @@ const ReviewDetail = () => {
             </div>
           </div>
           <div>
-            <div className="font-bold">customer</div>
+            <div className="font-bold">{customerName}</div>
           </div>
         </div>
       </td>
-      <td>message</td>
+      <td>{message}</td>
       <td>Purple</td>
     </tr>
   );

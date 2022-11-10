@@ -4,7 +4,9 @@ import ReviewDetail from "./ReviewDetail";
 
 const Myreview = () => {
   const { user } = useContext(AuthContext);
-  const [myreview, setMyreview] = useState({});
+
+  const [myreview, setMyreview] = useState([]);
+
   console.log(myreview);
   useEffect(() => {
     fetch(`http://localhost:5000/review?email=${user?.email}`)
@@ -31,7 +33,9 @@ const Myreview = () => {
             </tr>
           </thead>
           <tbody>
-            <ReviewDetail></ReviewDetail>
+            {myreview.map((my) => (
+              <ReviewDetail key={my._id} my={my}></ReviewDetail>
+            ))}
           </tbody>
         </table>
       </div>
