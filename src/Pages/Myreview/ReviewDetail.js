@@ -1,7 +1,7 @@
 import React from "react";
 
-const ReviewDetail = ({ my, handleDelete }) => {
-  const { _id, customerName, serviceName, message } = my;
+const ReviewDetail = ({ my, handleDelete, handleUpdate }) => {
+  const { _id, customerName, message, status } = my;
 
   return (
     <tr>
@@ -28,7 +28,7 @@ const ReviewDetail = ({ my, handleDelete }) => {
         </div>
       </td>
       <td>{message}</td>
-      <td>{serviceName}</td>
+      <td> <button onClick={() => handleUpdate(_id)}>{status ? status : 'pending'}</button></td>
     </tr>
   );
 };

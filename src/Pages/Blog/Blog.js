@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Blog = () => {
+  useEffect(() => {
+    document.title = "Blog"
+  }, [])
   return (
     <div>
       <div className="mb-10">

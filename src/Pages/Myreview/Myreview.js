@@ -4,14 +4,20 @@ import { AuthContext } from "../../Context/AuthProvider";
 import ReviewDetail from "./ReviewDetail";
 
 const Myreview = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   const [myreview, setMyreview] = useState([]);
 
   useEffect(() => {
+    document.title = "Myreview"
+  }, [])
+  useEffect(() => {
     fetch(`https://travelers-server.vercel.app/review?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyreview(data));
+    if (loading) {
+      return <button className="btn loading">loading</button>
+    }
   }, [user?.email])
 
   const handleDelete = (id) => {
@@ -29,6 +35,25 @@ const Myreview = () => {
       }
     }
   };
+
+  const handleUpdate = (id) => {
+    fetch(`http://localhost:5000/review/${id}`, {
+      method: "PATCH",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ status: 'Approved' })
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    if (data.modifiedCount > 0) {
+      const remain = myreview.filter(rev => rev._id !== id);
+      const approving = myreview.find(rev => rev._id === id);
+      approving.status = 'Approved'
+      const newReviwe = [...remain, approving];
+      setMyreview(newReviwe)
+    }
+  }
   return (
     <div className="mt-10">
       <h3 className="text-5xl text-bold text-teal-300 text-center mb-4">
@@ -54,6 +79,7 @@ const Myreview = () => {
                 key={my._id}
                 my={my}
                 handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
               ></ReviewDetail>
             ))}
           </tbody>

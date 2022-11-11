@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, loading } = useContext(AuthContext);
+
   const handleSignup = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,9 +17,13 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
         form.reset()
+        if (loading) {
+          return <button className="btn loading">loading</button>
+        }
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div className="hero w-full">
       <div className="hero-content flex-col gap-20 grid md:grid-cols-2 lg:flex-row">

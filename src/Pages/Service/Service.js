@@ -11,8 +11,8 @@ const Service = () => {
   }, []);
   return (
     <div>
-      <h2 className="text-6xl text-center text-bold text-teal-600 mt-10">
-        Explore Our Best Services
+      <h2 className="text-6xl text-center text-bold text-teal-600 my-10">
+        Explore My Best Services
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {card?.slice(0, 3).map((card) => (

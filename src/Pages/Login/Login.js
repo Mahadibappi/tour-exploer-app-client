@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext)
+  const { signIn, loading } = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location?.state?.pathname || '/';
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,9 +18,16 @@ const Login = () => {
         const user = result.user
         console.log(user);
         form.reset()
+        navigate(from, { replace: true })
+        if (loading) {
+          return <button className="btn loading">loading...</button>
+        }
       })
       .catch((err) => console.log(err));
   };
+  useEffect(() => {
+    document.title = "Login"
+  }, [])
   return (
     <div className="hero w-full">
       <div className="hero-content flex-col gap-20 grid md:grid-cols-2 lg:flex-row">
@@ -43,7 +53,7 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
