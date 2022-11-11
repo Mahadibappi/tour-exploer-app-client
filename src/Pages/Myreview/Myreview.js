@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import ReviewDetail from "./ReviewDetail";
@@ -7,12 +8,27 @@ const Myreview = () => {
 
   const [myreview, setMyreview] = useState([]);
 
-  console.log(myreview);
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user?.email}`)
+    fetch(`https://travelers-server.vercel.app/review?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyreview(data));
-  }, [user?.email]);
+  }, [user?.email])
+
+  const handleDelete = (id) => {
+    const proceed = window.confirm("aru you sure to delete?");
+    if (proceed) {
+      fetch(`https://travelers-server.vercel.app/review/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      if (data.deletedCount > 0) {
+        alert("deleted successfully");
+        const remain = myreview.filter((rev) => rev._id !== id);
+        setMyreview(remain);
+      }
+    }
+  };
   return (
     <div className="mt-10">
       <h3 className="text-5xl text-bold text-teal-300 text-center mb-4">
@@ -34,7 +50,11 @@ const Myreview = () => {
           </thead>
           <tbody>
             {myreview.map((my) => (
-              <ReviewDetail key={my._id} my={my}></ReviewDetail>
+              <ReviewDetail
+                key={my._id}
+                my={my}
+                handleDelete={handleDelete}
+              ></ReviewDetail>
             ))}
           </tbody>
         </table>

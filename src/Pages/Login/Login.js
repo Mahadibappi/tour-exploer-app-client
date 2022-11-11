@@ -4,19 +4,19 @@ import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext)
-  
+
   const handleLogin = (e) => {
     e.preventDefault();
-    const form = e.target 
-    const email = form.email.value 
-    const password = form.password.value 
-    signIn(email, password) 
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
+    signIn(email, password)
       .then(result => {
-        const user = result.user 
+        const user = result.user
         console.log(user);
         form.reset()
       })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   };
   return (
     <div className="hero w-full">

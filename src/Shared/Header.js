@@ -1,11 +1,17 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 import { Link } from "react-router-dom";
 import logo from "../../src/logo.png";
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, googleLogin } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogle = () => {
+    googleLogin(googleProvider);
+  };
 
   const handlelogOut = () => {
     logout()
@@ -42,15 +48,6 @@ const Header = () => {
             {user?.email ? (
               <>
                 <li>
-                  <button
-                    onClick={handlelogOut}
-                    className="font-medium tracking-wide text-gray-100
-                    transition-colors duration-200 hover:text-teal-accent-400"
-                  >
-                    Logout
-                  </button>
-                </li>
-                <li>
                   <Link
                     to="/myreview"
                     aria-label="Our product"
@@ -69,6 +66,15 @@ const Header = () => {
                   >
                     Add Service
                   </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handlelogOut}
+                    className="font-medium tracking-wide text-gray-100
+                    transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Logout
+                  </button>
                 </li>
               </>
             ) : (
@@ -96,12 +102,12 @@ const Header = () => {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/signup"
+                onClick={handleGoogle}
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
-                Sign up
+                Login with Google
               </Link>
             </li>
           </ul>

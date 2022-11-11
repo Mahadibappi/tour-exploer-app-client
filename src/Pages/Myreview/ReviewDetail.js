@@ -1,12 +1,15 @@
 import React from "react";
 
-const ReviewDetail = ({ my }) => {
-  const { customerName, message } = my;
+const ReviewDetail = ({ my, handleDelete }) => {
+  const { _id, customerName, serviceName, message } = my;
+
   return (
     <tr>
       <th>
         <label>
-          <input type="checkbox" className="checkbox" />
+          <button onClick={() => handleDelete(_id)} className="btn btn-info">
+            X
+          </button>
         </label>
       </th>
       <td>
@@ -25,7 +28,7 @@ const ReviewDetail = ({ my }) => {
         </div>
       </td>
       <td>{message}</td>
-      <td>Purple</td>
+      <td>{serviceName}</td>
     </tr>
   );
 };

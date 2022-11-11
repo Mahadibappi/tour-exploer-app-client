@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import Review from "../Review/Review";
 
@@ -61,43 +61,56 @@ const Details = () => {
       {/* Add Review section */}
 
       <div>
-        <h3 className="text-4xl text-center  text-teal-500 mt-8">Add Review</h3>
-        <form onSubmit={handleReview} className="flex justify-center">
-          <div className="grid grid-cols-1 gap-4 mt-3 mx-auto">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              className="input input-bordered input-primary w-full"
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Your Phone"
-              className="input input-bordered input-primary w-full"
-              required
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder="Your email"
-              className="input input-bordered input-primary w-full"
-              defaultValue={user?.email}
-            />
-            <div>
-              <textarea
-                name="message"
-                className="textarea textarea-primary w-full"
-                placeholder="Your Message"
-              ></textarea>
-              <input
-                type="submit"
-                value="Add review"
-                className="mt-3 btn  btn-outline btn-success"
-              />
-            </div>
-          </div>
-        </form>
+        {user ? (
+          <>
+            <h3 className="text-4xl text-center  text-teal-500 mt-8">
+              Add Review
+            </h3>
+            <form onSubmit={handleReview} className="flex justify-center">
+              <div className="grid grid-cols-1 gap-4 mt-3 mx-auto">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  className="input input-bordered input-primary w-full"
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Your Phone"
+                  className="input input-bordered input-primary w-full"
+                  required
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Your email"
+                  className="input input-bordered input-primary w-full"
+                  defaultValue={user?.email}
+                />
+                <div>
+                  <textarea
+                    name="message"
+                    className="textarea textarea-primary w-full"
+                    placeholder="Your Message"
+                  ></textarea>
+                  <input
+                    type="submit"
+                    value="Add review"
+                    className="mt-3 btn  btn-outline btn-success"
+                  />
+                </div>
+              </div>
+            </form>
+          </>
+        ) : (
+          <Link
+            className="text-4xl text-bold text-teal-400 flex justify-center mt-8"
+            to={"/login"}
+          >
+            Please login to add Review
+          </Link>
+        )}
       </div>
     </div>
   );
