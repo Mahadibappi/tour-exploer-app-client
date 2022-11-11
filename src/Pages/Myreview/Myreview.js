@@ -38,7 +38,7 @@ const Myreview = () => {
   };
 
   const handleUpdate = (id) => {
-    fetch(`http://localhost:5000/review/${id}`, {
+    fetch(`https://travelers-server.vercel.app/review/${id}`, {
       method: "PATCH",
       headers: {
         'content-type': 'application/json'

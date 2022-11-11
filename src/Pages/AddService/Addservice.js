@@ -18,7 +18,7 @@ const Addservice = () => {
             message: message,
         };
 
-        fetch("http://localhost:5000/added", {
+        fetch("https://travelers-server.vercel.app/added", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

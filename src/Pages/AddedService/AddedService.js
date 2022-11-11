@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AddedService = () => {
     const [add, setAdd] = useState()
     useEffect(() => {
-        fetch('http://localhost:5000/added')
+        fetch('https://travelers-server.vercel.app/added')
             .then(res => res.json())
             .then(data => setAdd(data))
     }, [])
