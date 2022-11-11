@@ -5,7 +5,6 @@ import ReviewDetail from "./ReviewDetail";
 
 const Myreview = () => {
   const { user, loading } = useContext(AuthContext);
-
   const [myreview, setMyreview] = useState([]);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Myreview = () => {
     if (loading) {
       return <button className="btn loading">loading</button>
     }
-  }, [user?.email])
+  }, [user?.email, loading])
 
   const handleDelete = (id) => {
     const proceed = window.confirm("aru you sure to delete?");
@@ -27,12 +26,14 @@ const Myreview = () => {
         method: "DELETE",
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
-      if (data.deletedCount > 0) {
-        alert("deleted successfully");
-        const remain = myreview.filter((rev) => rev._id !== id);
-        setMyreview(remain);
-      }
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("deleted successfully");
+            const remain = myreview.filter((rev) => rev._id !== id);
+            setMyreview(remain);
+          }
+        });
+
     }
   };
 
@@ -45,14 +46,16 @@ const Myreview = () => {
       body: JSON.stringify({ status: 'Approved' })
     })
       .then(res => res.json())
-      .then(data => console.log(data))
-    if (data.modifiedCount > 0) {
-      const remain = myreview.filter(rev => rev._id !== id);
-      const approving = myreview.find(rev => rev._id === id);
-      approving.status = 'Approved'
-      const newReviwe = [...remain, approving];
-      setMyreview(newReviwe)
-    }
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          const remain = myreview.filter(rev => rev._id !== id);
+          const approving = myreview.find(rev => rev._id === id);
+          approving.status = 'Approved'
+          const newReviwe = [...remain, approving];
+          setMyreview(newReviwe)
+        }
+      })
+
   }
   return (
     <div className="mt-10">

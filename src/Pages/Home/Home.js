@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AddedService from '../AddedService/AddedService';
 import Adventure from '../Adventure/Adventure';
 import Service from '../Service/Service';
 import Support from '../Support/Support';
@@ -13,6 +14,7 @@ const Home = () => {
             <Banner></Banner>
             <Service></Service>
             <Adventure></Adventure>
+            <AddedService></AddedService>
             <Support></Support>
         </div>
     );

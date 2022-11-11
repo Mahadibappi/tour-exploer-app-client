@@ -10,6 +10,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Myreview from "../Pages/Myreview/Myreview";
 import Blog from "../Pages/Blog/Blog";
 import PrivateRoute from "./PrivateRoute";
+import Addservice from "../Pages/AddService/Addservice";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +56,17 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
+        path: "/add",
+        element:
+          <PrivateRoute>
+            <Addservice></Addservice>
+          </PrivateRoute>
+      },
+      {
         path: "/blog",
-        element: <Blog></Blog>,
+        element:
+          <Blog></Blog>,
+
       },
     ],
   },
